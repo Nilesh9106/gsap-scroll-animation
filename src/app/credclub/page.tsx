@@ -1,28 +1,19 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const CredClub = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      render();
-    };
-
-    window.addEventListener("resize", resizeCanvas);
 
     const frameCount = 298;
     const images: HTMLImageElement[] = [];
@@ -34,9 +25,13 @@ const CredClub = () => {
       images.push(img);
     }
 
+    const render = () => {
+      scaleImage(images[imageSeq.frame], context!);
+    };
+
     const tl = gsap.timeline({
       scrollTrigger: {
-        scrub: 1,
+        scrub: 2,
         trigger: `#canvas-card>canvas`,
         start: `top top`,
         end: `350% top`,
@@ -54,9 +49,14 @@ const CredClub = () => {
 
     images[1].onload = render;
 
-    function render() {
-      scaleImage(images[imageSeq.frame], context!);
-    }
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      render();
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
