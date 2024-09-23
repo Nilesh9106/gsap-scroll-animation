@@ -5,6 +5,8 @@ import { Html, useProgress } from "@react-three/drei";
 import { Target } from "./Target";
 import { Strawberry } from "./Strwaberry";
 import Diamond from "./Diamond";
+import LiquidDistortion from "./LiquidDistortion";
+import Lights from "./Lights";
 
 const ModelLoader = () => {
   const progress = useProgress();
@@ -103,10 +105,8 @@ const Model = () => {
     <Canvas className="bg-black">
       <Suspense fallback={<ModelLoader />}>
         <color attach="background" args={["#000000"]} />
-        <ambientLight intensity={0.5} position={[10, 10, 0]} />
-        <ambientLight intensity={0.5} position={[-10, -10, 0]} />
-        <directionalLight color="white" position={[10, 10, 10]} />
-        <directionalLight color="white" position={[-10, -10, -10]} />
+        <Lights />
+        <LiquidDistortion />
         <StromTrooper />
         {targetPositions.map((pos, index) => (
           <Target key={index} position={pos} />
