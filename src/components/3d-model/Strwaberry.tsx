@@ -3,19 +3,27 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
+import gsap from "gsap";
 
 export function Strawberry(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF("/strawberry.glb") as any;
   const ref = useRef<Group>(null);
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.y += 0.01;
-      ref.current.rotation.x += 0.01;
-      ref.current.rotation.z += 0.01;
-      ref.current.position.y += 0.02;
+      ref.current.rotation.y += 0.02;
+      ref.current.rotation.x += 0.02;
+      ref.current.rotation.z += 0.02;
+      ref.current.position.y += 0.04;
 
       if (ref.current.position.y > 6) {
-        ref.current.position.y = -5;
+        ref.current.position.y = Math.random() - 5;
+        gsap.from(ref.current.scale, {
+          x: 0,
+          y: 0,
+          z: 0,
+          duration: 0.8,
+          opacity: 0,
+        });
       }
     }
   });

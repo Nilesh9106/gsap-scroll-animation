@@ -11,18 +11,11 @@ export function StromTrooper(props: JSX.IntrinsicElements["group"]) {
   const { mouse } = useThree();
 
   useFrame(({ camera }) => {
-    if (groupRef.current) {
-      groupRef.current.position.y =
-        -2 + Math.sin(window.performance.now() / 1000) * 0.1;
-      // on mouse move my group should rotateX towards cursor little bit
-      groupRef.current.rotation.y = mouse.x / 20;
-    }
-    // move camera to follow mouse little
-    camera.position.x = mouse.x / 5;
-    camera.position.y = mouse.y / 5;
+    camera.rotation.x = -mouse.y / 40;
+    camera.rotation.y = -mouse.x / 40;
   });
   return (
-    <group {...props} position={[0, -4.5, 1]} dispose={null}>
+    <group {...props} position={[0, -6, 1]} dispose={null}>
       <group scale={0.04} ref={groupRef}>
         <mesh
           castShadow
