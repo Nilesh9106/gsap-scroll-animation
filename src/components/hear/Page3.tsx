@@ -77,9 +77,10 @@ const Page3 = () => {
           <Image
             src="/imgs/pg3_1.jpeg"
             alt="Health"
-            layout="fill"
+            width={500}
+            height={500}
             objectFit="cover"
-            className="rounded-[1vw]"
+            className="rounded-[1vw] w-full h-full"
           />
         </div>
       </div>
@@ -95,9 +96,10 @@ const Page3 = () => {
           <Image
             src="/imgs/pg3_2.jpeg"
             alt="Transform Health"
-            layout="fill"
+            width={500}
+            height={500}
             objectFit="cover"
-            className="rounded-[1vw]"
+            className="rounded-[1vw] w-full h-full"
           />
         </div>
 
