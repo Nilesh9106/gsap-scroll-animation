@@ -9,45 +9,18 @@
   box-sizing: border-box;
 }
 
-body,
-html {
-  width: 100%;
-  height: 100%;
-}
-
-/* Hide the default scrollbar */
-body::-webkit-scrollbar {
-  width: 6px; /* Width of the scrollbar */
-}
-
-/* Customize scrollbar track */
-body::-webkit-scrollbar-track {
-  background-color: transparent; /* Set to the desired background color */
-}
-
-/* Customize scrollbar handle */
-body::-webkit-scrollbar-thumb {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); /* Adjust handle color and transparency */
-  border-radius: 3px; /* Adjust border radius to match the design */
-}
-
-/* Optionally, add hover and active styles */
-body::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(35, 35, 35, 0.7); /* Adjust handle color on hover */
-}
-
-body::-webkit-scrollbar-thumb:active {
-  background-color: rgba(0, 0, 0, 1); /* Adjust handle color on active state */
-}
-
 *::selection {
   color: #4d86f9;
   background-color: rgb(53, 53, 53);
+}
+
+#page1 canvas {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 75%;
 }
 
 #canvas-card {
