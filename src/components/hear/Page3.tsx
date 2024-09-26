@@ -79,8 +79,7 @@ const Page3 = () => {
             alt="Health"
             width={500}
             height={500}
-            objectFit="cover"
-            className="rounded-[1vw] w-full h-full"
+            className="object-cover rounded-[1vw] w-full h-full"
           />
         </div>
       </div>
@@ -98,8 +97,7 @@ const Page3 = () => {
             alt="Transform Health"
             width={500}
             height={500}
-            objectFit="cover"
-            className="rounded-[1vw] w-full h-full"
+            className="rounded-[1vw] object-cover w-full h-full"
           />
         </div>
 

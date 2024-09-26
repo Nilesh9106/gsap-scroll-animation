@@ -1,7 +1,14 @@
+import { useGSAP } from "@gsap/react";
 import Spline from "@splinetool/react-spline";
+import gsap from "gsap";
 import Image from "next/image";
 
 const Page1 = () => {
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.from("#navbar", { y: -100, opacity: 0, duration: 1 });
+    tl.from(".op", { opacity: 0, duration: 1, stagger: 0 });
+  });
   return (
     <div className="h-screen w-full bg-white overflow-hidden">
       <div className="relative h-full w-full p-4 text-center">
@@ -59,13 +66,13 @@ const Page1 = () => {
           height={400}
           id="rightring"
         />
-        <h1 className="mt-8 text-5xl font-semibold text-blue-600">
+        <h1 className="mt-8 op text-5xl font-semibold text-blue-600">
           Transforming Cough Sounds
         </h1>
-        <h2 className="text-5xl font-semibold mt-3 text-blue-600">
+        <h2 className="text-5xl op font-semibold mt-3 text-blue-600">
           into Diagnostic Insights
         </h2>
-        <p className="mt-4 text-gray-500 font-light text-lg w-1/3 mx-auto">
+        <p className="mt-4 op text-gray-500 font-light text-lg w-1/3 mx-auto">
           At Hear, we’re revolutionizing healthcare with AI that analyzes cough
           sounds for early diagnosis.
         </p>

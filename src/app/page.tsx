@@ -5,6 +5,7 @@ import Page1 from "@/components/hear/Page1";
 import Page2Video from "@/components/hear/Page2Video";
 import Page3 from "@/components/hear/Page3";
 import Page5 from "@/components/hear/Page5";
+import RingsComponent from "@/components/hear/RingsAnimation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
@@ -21,6 +22,7 @@ export default function Home() {
         <CanvasVideo />
         <ChatImage />
       </div>
+      <RingsComponent />
     </>
   );
 }
