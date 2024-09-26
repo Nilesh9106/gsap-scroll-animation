@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const RingsComponent: React.FC = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const RingsComponent = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const smallRef = useRef<HTMLDivElement>(null);
+  const bigRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
-    const tl6 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#rings-container",
-        scroller: "body",
-        start: "-20% 00%",
-        end: "30% 00%",
-        // pin: true,
-        scrub: 2,
-        // markers: true
-      },
-    });
-    tl6
-      .from("#rings-container #large-ring", {
-        width: "0vw",
-        height: "0vw",
-      })
-      .from("#rings-container #small-ring", {
-        width: "0vw",
-        height: "0vw",
-        delay: -0.2,
+    setTimeout(() => {
+      const tl6 = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          scroller: "body",
+          start: "-20% 00%",
+          end: "30% 00%",
+          // pin: true,
+          scrub: 2,
+          // markers: true,
+        },
       });
+      tl6
+        .from(bigRef.current, {
+          width: "0vw",
+          height: "0vw",
+        })
+        .from(smallRef.current, {
+          width: "0vw",
+          height: "0vw",
+          delay: -0.2,
+        });
+    }, 1000);
   });
   return (
     <div
       id="rings-container"
+      ref={containerRef}
       className="relative h-[130vh] overflow-hidden w-full bg-black flex flex-col items-center justify-center pt-[5vw]"
     >
       <div
@@ -38,6 +47,7 @@ const RingsComponent: React.FC = () => {
       ></div>
       <div
         id="small-ring"
+        ref={smallRef}
         className="absolute pointer-events-none top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] animate-[rotate_18s_linear_infinite]"
       >
         <svg
@@ -74,6 +84,7 @@ const RingsComponent: React.FC = () => {
       </div>
       <div
         id="large-ring"
+        ref={bigRef}
         className="absolute top-1/2 left-1/2 transform pointer-events-none  -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] animate-[rotate_18s_linear_infinite_reverse]"
       >
         <svg

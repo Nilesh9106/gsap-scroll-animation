@@ -1,6 +1,7 @@
 "use client";
 import CanvasVideo from "@/components/hear/CanvasVideo";
 import ChatImage from "@/components/hear/ChatImage";
+import Loader from "@/components/hear/Loader";
 import Page1 from "@/components/hear/Page1";
 import Page2Video from "@/components/hear/Page2Video";
 import Page3 from "@/components/hear/Page3";
@@ -14,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
 export default function Home() {
   return (
     <>
+      <Loader />
       <Page1 />
       <Page2Video />
       <Page3 />
