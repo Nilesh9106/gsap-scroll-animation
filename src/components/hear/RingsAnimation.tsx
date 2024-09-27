@@ -11,29 +11,27 @@ const RingsComponent = () => {
   const smallRef = useRef<HTMLDivElement>(null);
   const bigRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
-    setTimeout(() => {
-      const tl6 = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          scroller: "body",
-          start: "-20% 00%",
-          end: "30% 00%",
-          // pin: true,
-          scrub: 2,
-          // markers: true,
-        },
+    const tl6 = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        scroller: "body",
+        start: "-20% 00%",
+        end: "30% 00%",
+        // pin: true,
+        scrub: 2,
+        // markers: true,
+      },
+    });
+    tl6
+      .from(bigRef.current, {
+        width: "0vw",
+        height: "0vw",
+      })
+      .from(smallRef.current, {
+        width: "0vw",
+        height: "0vw",
+        delay: -0.2,
       });
-      tl6
-        .from(bigRef.current, {
-          width: "0vw",
-          height: "0vw",
-        })
-        .from(smallRef.current, {
-          width: "0vw",
-          height: "0vw",
-          delay: -0.2,
-        });
-    }, 1000);
   });
   return (
     <div

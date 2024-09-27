@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CanvasVideo = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -60,7 +61,10 @@ const CanvasVideo = () => {
         width: "88%",
       });
 
-    images[1].onload = render;
+    images[1].onload = () => {
+      ScrollTrigger.refresh();
+      render();
+    };
 
     function render() {
       scaleImage(images[imageSeq.frame], context!);
@@ -78,7 +82,7 @@ const CanvasVideo = () => {
       window.removeEventListener("resize", resizeCanvas);
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
-  }, []);
+  });
   return (
     <>
       <canvas ref={canvasRef}></canvas>
